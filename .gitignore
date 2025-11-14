@@ -1,0 +1,7 @@
+# Gradle
+.gradle/
+build/
+bin/
+
+TODO.md
+*workspace

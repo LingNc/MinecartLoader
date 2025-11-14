@@ -1,0 +1,6 @@
+minecart-loader-enabled: true
+timeout-ticks: 600
+static-threshold-ticks: 1200
+chunk-radius: 0
+scan-on-startup: true
+display-item: BARRIER

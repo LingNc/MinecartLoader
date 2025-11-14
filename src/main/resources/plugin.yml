@@ -1,0 +1,15 @@
+name: MinecartLoader
+main: com.example.minecartloader.MinecartLoaderPlugin
+version: 1.0.0
+api-version: "1.21"
+description: "Minecart-based temporary chunk loaders for Paper 1.21.x"
+depend:
+  - WildLoaders
+commands:
+  minecartloader:
+    description: Control minecart-based chunk loading
+    usage: /minecartloader <on|off|freeze|unfreeze|status>
+    permission: minecartloader.admin
+permissions:
+  minecartloader.admin:
+    default: op
