@@ -1,4 +1,4 @@
-group = "com.example.minecartloader"
+group = "com.lingnc.minecartloader"
 version = "1.0.1"
 val paperGameVersion = "paper-1.21.7"
 

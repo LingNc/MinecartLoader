@@ -1,4 +1,4 @@
-package com.example.minecartloader;
+package com.lingnc.minecartloader;
 
 import com.bgsoftware.wildloaders.api.loaders.ChunkLoader;
 import com.bgsoftware.wildloaders.api.loaders.LoaderData;

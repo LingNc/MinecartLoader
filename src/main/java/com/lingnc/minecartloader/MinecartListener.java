@@ -1,4 +1,4 @@
-package com.example.minecartloader;
+package com.lingnc.minecartloader;
 
 import org.bukkit.Chunk;
 import org.bukkit.entity.Minecart;
