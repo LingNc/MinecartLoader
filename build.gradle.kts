@@ -1,5 +1,5 @@
 group = "com.lingnc.minecartloader"
-version = "1.0.1"
+version = "1.0.2"
 val paperGameVersion = "paper-1.21.7"
 
 plugins {

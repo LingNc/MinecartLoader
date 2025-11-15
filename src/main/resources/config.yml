@@ -9,6 +9,23 @@ timeout-seconds: 60
 ## 用于避免短暂停顿就立刻卸载，0 表示不开启额外静止时间
 static-threshold-seconds: 30
 
+## 按矿车类型控制是否启用区块动态加载
+## normal: 普通矿车（Minecart）
+## chest: 箱子矿车（Storage Minecart）
+## furnace: 动力矿车（Furnace Minecart）
+## tnt: TNT 矿车（TNT Minecart）
+## hopper: 漏斗矿车（Hopper Minecart）
+## spawner: 刷怪笼矿车（Spawner Minecart，如有）
+## command-block: 命令方块矿车（Command Block Minecart）
+minecarts:
+  normal: true
+  chest: true
+  furnace: true
+  tnt: true
+  hopper: true
+  spawner: true
+  command-block: true
+
 ## 加载半径（以 chunk 为单位），0 = 只加载当前 chunk
 chunk-radius: 0
 

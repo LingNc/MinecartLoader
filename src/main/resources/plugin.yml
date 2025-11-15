@@ -1,6 +1,6 @@
 name: MinecartLoader
 main: com.lingnc.minecartloader.MinecartLoaderPlugin
-version: 1.0.1
+version: 1.0.2
 api-version: "1.21"
 description: "Minecart-based temporary chunk loaders for Paper 1.21.x"
 depend:
