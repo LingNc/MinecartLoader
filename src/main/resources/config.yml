@@ -1,6 +1,20 @@
+## 是否启用矿车区块加载功能
 minecart-loader-enabled: true
-timeout-ticks: 600
-static-threshold-ticks: 1200
+
+## 每个由本插件创建的加载器基础存活时间（单位：秒）
+## 例如 60 = 约 1 分钟，300 = 约 5 分钟
+timeout-seconds: 60
+
+## 矿车静止不动时额外允许存活时间（单位：秒）
+## 用于避免短暂停顿就立刻卸载，0 表示不开启额外静止时间
+static-threshold-seconds: 30
+
+## 加载半径（以 chunk 为单位），0 = 只加载当前 chunk
 chunk-radius: 0
+
+## 插件启用时是否扫描当前世界中的所有矿车并自动建立加载记录
 scan-on-startup: true
+
+## WildLoaders 中用于展示/掉落的物品类型
+## 请填写合法的 Material 名称，例如 CLOCK、EMERALD_BLOCK 等
 display-item: BARRIER

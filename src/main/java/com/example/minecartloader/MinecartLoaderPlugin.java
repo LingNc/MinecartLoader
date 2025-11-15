@@ -17,6 +17,8 @@ public final class MinecartLoaderPlugin extends JavaPlugin {
     private ChunkUsageManager chunkUsageManager;
 
     private boolean scanOnStartup;
+    private long timeoutSeconds;
+    private long staticThresholdSeconds;
 
     @Override
     public void onEnable() {
@@ -34,10 +36,9 @@ public final class MinecartLoaderPlugin extends JavaPlugin {
         initLoaderData();
 
         this.chunkUsageManager = new ChunkUsageManager(this, loadersManager, minecartLoaderData,
-                getConfig().getLong("timeout-ticks"),
-                getConfig().getLong("static-threshold-ticks"),
-                getConfig().getInt("chunk-radius"),
-                enabled);
+        timeoutSeconds * 20L,
+        staticThresholdSeconds * 20L,
+        enabled);
 
         getServer().getPluginManager().registerEvents(new MinecartListener(this, chunkUsageManager), this);
         getCommand("minecartloader").setExecutor(new MinecartLoaderCommand(this, chunkUsageManager));
@@ -64,6 +65,8 @@ public final class MinecartLoaderPlugin extends JavaPlugin {
         reloadConfig();
         this.enabled = getConfig().getBoolean("minecart-loader-enabled", true);
         this.scanOnStartup = getConfig().getBoolean("scan-on-startup", true);
+        this.timeoutSeconds = getConfig().getLong("timeout-seconds", 60L);
+        this.staticThresholdSeconds = getConfig().getLong("static-threshold-seconds", 30L);
     }
 
     private void cleanupOldMinecartLoaders() {
@@ -80,7 +83,7 @@ public final class MinecartLoaderPlugin extends JavaPlugin {
         if (minecartLoaderData == null) {
             minecartLoaderData = loadersManager.createLoaderData(
                     "minecart-temporary",
-                    getConfig().getLong("timeout-ticks", 600L),
+                    timeoutSeconds,
                     new org.bukkit.inventory.ItemStack(
                             org.bukkit.Material.valueOf(getConfig().getString("display-item", "BARRIER")))
             );
@@ -101,6 +104,23 @@ public final class MinecartLoaderPlugin extends JavaPlugin {
 
     public ChunkUsageManager getChunkUsageManager() {
         return chunkUsageManager;
+    }
+
+    public void reloadPluginConfig() {
+        reloadConfig();
+        this.enabled = getConfig().getBoolean("minecart-loader-enabled", true);
+        this.scanOnStartup = getConfig().getBoolean("scan-on-startup", true);
+        this.timeoutSeconds = getConfig().getLong("timeout-seconds", 60L);
+        this.staticThresholdSeconds = getConfig().getLong("static-threshold-seconds", 30L);
+
+        if (chunkUsageManager != null) {
+            ChunkUsageManager newManager = new ChunkUsageManager(this, loadersManager, minecartLoaderData,
+            timeoutSeconds * 20L,
+            staticThresholdSeconds * 20L,
+            enabled);
+            this.chunkUsageManager.shutdown();
+            this.chunkUsageManager = newManager;
+        }
     }
 }
 

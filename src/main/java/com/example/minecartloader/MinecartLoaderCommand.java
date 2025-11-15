@@ -29,7 +29,7 @@ public final class MinecartLoaderCommand implements CommandExecutor, TabComplete
         }
 
         if (args.length == 0) {
-            sender.sendMessage("§e用法: /minecartloader <on|off|freeze|unfreeze|status>");
+            sender.sendMessage("§e用法: /minecartloader <on|off|freeze|unfreeze|status|reload>");
             return true;
         }
 
@@ -59,8 +59,12 @@ public final class MinecartLoaderCommand implements CommandExecutor, TabComplete
                 sender.sendMessage("§eMinecartLoader 状态: " + (plugin.isMinecartLoaderEnabled() ? "§a开启" : "§c关闭"));
                 sender.sendMessage("§e当前活跃 chunk 计数: §b" + chunkUsageManager.getActiveChunkCount());
                 break;
+            case "reload":
+                plugin.reloadPluginConfig();
+                sender.sendMessage("§aMinecartLoader 配置已重新加载。");
+                break;
             default:
-                sender.sendMessage("§e用法: /minecartloader <on|off|freeze|unfreeze|status>");
+                sender.sendMessage("§e用法: /minecartloader <on|off|freeze|unfreeze|status|reload>");
                 break;
         }
 
@@ -70,7 +74,7 @@ public final class MinecartLoaderCommand implements CommandExecutor, TabComplete
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            List<String> options = Arrays.asList("on", "off", "freeze", "unfreeze", "status");
+            List<String> options = Arrays.asList("on", "off", "freeze", "unfreeze", "status", "reload");
             String prefix = args[0].toLowerCase();
             List<String> result = new ArrayList<>();
             for (String option : options) {

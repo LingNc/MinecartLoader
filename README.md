@@ -29,15 +29,15 @@ MinecartLoader 是一个基于 WildLoaders 的辅助插件，用于在 Paper 1.2
 插件的主配置文件为 `config.yml`：
 
 - `minecart-loader-enabled`：是否启用矿车加载逻辑，默认 `true`。
-- `timeout-ticks`：每个由本插件创建的区块加载器的基础存活时间（tick），默认 `600`。
-- `static-threshold-ticks`：矿车“静止不动”的额外阈值，在该时间内仍视为应保持加载，默认 `1200`。
-- `chunk-radius`：加载范围的块半径，0 表示仅当前 chunk；该值会设置到 WildLoaders 的 `LoaderData`。
+- `timeout-seconds`：每个由本插件创建的加载器基础存活时间（单位：秒），例如 `60` ≈ 1 分钟。
+- `static-threshold-seconds`：矿车静止时额外允许运行的时间（单位：秒），用于避免短暂停顿就立即卸载，`0` 表示不开启。
+- `chunk-radius`：加载范围的块半径，`0` 表示仅当前 chunk，该值会设置到 WildLoaders 的 `LoaderData`。
 - `scan-on-startup`：服务器启动时是否扫描现有矿车并为它们建立加载记录，默认 `true`。
-- `display-item`：在 WildLoaders 中用于展示/掉落的物品类型，默认 `BARRIER`。
+- `display-item`：在 WildLoaders 中用于展示/掉落的物品类型，请填写合法的 Material 名称（例如 `CLOCK`、`EMERALD_BLOCK`）。
 
 ## 命令与权限
 
-- 命令：`/minecartloader <on|off|freeze|unfreeze|status>`
+- 命令：`/minecartloader <on|off|freeze|unfreeze|status|reload>`
 - 权限：`minecartloader.admin`（默认 OP）
 
 子命令说明：
@@ -47,6 +47,7 @@ MinecartLoader 是一个基于 WildLoaders 的辅助插件，用于在 Paper 1.2
 - `freeze`：关闭逻辑并移除所有由本插件创建的临时加载器。
 - `unfreeze`：重新开启逻辑，可通过移动矿车重新建立加载器。
 - `status`：查看当前启用状态以及活跃 chunk 计数。
+- `reload`：从磁盘重新加载 `config.yml` 并应用新的时间/半径配置（无需重启服务器）。
 
 ## 开发与构建
 

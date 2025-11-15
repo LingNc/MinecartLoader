@@ -1,6 +1,8 @@
 package com.example.minecartloader;
 
 import com.bgsoftware.wildloaders.api.loaders.ChunkLoader;
+import org.bukkit.Location;
+import org.bukkit.block.data.BlockData;
 
 public final class ChunkUsageRecord {
 
@@ -10,6 +12,9 @@ public final class ChunkUsageRecord {
     private long expireAtTick;
     private long lastCrossTick;
     private boolean scheduled;
+
+    private Location replacedBlockLocation;
+    private BlockData replacedBlockData;
 
     public int getMinecartCount() {
         return minecartCount;
@@ -57,5 +62,21 @@ public final class ChunkUsageRecord {
 
     public void setScheduled(boolean scheduled) {
         this.scheduled = scheduled;
+    }
+
+    public Location getReplacedBlockLocation() {
+        return replacedBlockLocation;
+    }
+
+    public void setReplacedBlockLocation(Location replacedBlockLocation) {
+        this.replacedBlockLocation = replacedBlockLocation;
+    }
+
+    public BlockData getReplacedBlockData() {
+        return replacedBlockData;
+    }
+
+    public void setReplacedBlockData(BlockData replacedBlockData) {
+        this.replacedBlockData = replacedBlockData;
     }
 }
